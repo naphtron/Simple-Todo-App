@@ -11,13 +11,20 @@ class Todo(db.Model):
     title = db.Column(db.String(100))
     complete = db.Column(db.Boolean)
 
+
 @app.route('/')
 def index():
-    return render_template('base.html')
+    # show all todos
+    todo_list = Todo.query.all()
+    print(todo_list)
+    return render_template('base.html', todo_list=todo_list)
 
 
 
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
-    app.run(debug=True)
+        new_todo = Todo(title='todo_1', complete=False)
+        db.session.add(new_todo)
+        db.session.commit()
+        app.run(debug=True)
