@@ -10,7 +10,7 @@ class Todo(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     title = db.Column(db.String(100))
     complete = db.Column(db.Boolean)
-
+#2023 issa wrap
 
 @app.route('/')
 def index():
